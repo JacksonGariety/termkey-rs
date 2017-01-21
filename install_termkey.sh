@@ -24,3 +24,5 @@ ${make} -j2 -C termkey-c
 ${make} -j2 -C termkey-c test
 ${sudo} ${make} -j2 -C termkey-c install
 ${sudo} ${ldconfig}
+
+echo '#[link_args = "'$(pkg-config --libs termkey) $(pkg-config --libs-only-L termkey | sed 's/-L/-Wl,-rpath=/g')'"] extern {}' > src/generated_link.rs
